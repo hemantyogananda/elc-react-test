@@ -17,7 +17,13 @@ import ReactDOM from 'react-dom';
 
 import Menu from './components/menu';
 import Home from './components/home';
-
+import { Provider } from "react-redux";
+import store from './redux/store';
+import {BrowserRouter , Route, Routes,Switch} from 'react-router-dom';
+import Search from './components/search';
+import ProductList from "./components/productList"
+import Product from './pages/Product';
+// import Home from './pages/Home';
 
 /**
  * We can start our initial App here in the main.js file
@@ -35,6 +41,10 @@ class App extends React.Component {
             <div className="App">
                 <Menu />
                 <Home />
+                <Routes>
+                    <Route exact path='/' element={<Home />}/>
+                    <Route path='/products?search=:term' element={<Product />}/>
+                </Routes>
             </div>
         );
     }
@@ -42,4 +52,4 @@ class App extends React.Component {
 }
 
 // Render this out
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Provider store={store}><BrowserRouter><App/></BrowserRouter></Provider>, document.getElementById('root'));

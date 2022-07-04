@@ -2,7 +2,7 @@ var data = [
     {
         "_id": "001",
         "isActive": "true",
-        "price": "20.00",
+        "price": "210.00",
         "picture": "/img/products/N0CA_430.png",
         "name": "Damage Reverse Oil Conditioner",
         "about": "Dolor voluptate velit consequat duis. Aute ad officia fugiat esse anim exercitation voluptate excepteur pariatur sit culpa duis qui esse. Labore amet ad eu veniam nostrud minim labore aliquip est sint voluptate nostrud reprehenderit. Ipsum nostrud culpa consequat reprehenderit.",

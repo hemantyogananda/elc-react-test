@@ -32,13 +32,41 @@ const port      = 3035;
  * The Request object 'req' represents the request to the server.
  * The ServerResponse object 'res' represents the writable stream back to the client.
  */
-http.createServer(function (req, res) {
-    // .. Here you can create your data response in a JSON format
+// http.createServer(function (req, res) {
+//     // .. Here you can create your data response in a JSON format
+        
+//     res.write("Response goes in here..."); // Write out the default response
+//     res.end(); //end the response
+
     
-    
-    res.write("Response goes in here..."); // Write out the default response
-    res.end(); //end the response
-}).listen( port );
+// }).listen( port );
+const productsRoutes = require('./routes/products')
+const express = require('express');
+// const bodyParser = require('body-parser');
+
+const app = express();
+const cors = require('cors');
+const morgan = require('morgan');
+
+app.use(cors());
+app.use(morgan('tiny'));
+
+const fs = require('fs');
+
+app.use(express.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+
+const routes = require('./routes/routes.js')(app, fs);
+app.use('/products', productsRoutes);
+
+const server = app.listen(3035, () => {
+    console.log('listening on port %s...', server.address().port);
+  });
 
 
-console.log(`[Server running on ${hostname}:${port}]`);
+  
+//   app.get('/products', (req,res) => {
+//     res.send(data);
+// })
+
+// console.log(`[Server running on ${hostname}:${port}]`);
